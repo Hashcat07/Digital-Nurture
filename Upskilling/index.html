@@ -127,7 +127,9 @@
           <br /><br />
 
           <label>Event Type:</label>
-          <select id="eventType" onchange="showFee()">
+          <label for="eventType">Event Type:</label>
+          <select id="eventType" onchange="savePreference()">
+            <option disabled selected>Select Event</option>
             <option>Workshop</option>
             <option>Music</option>
             <option>Sports</option>
@@ -160,6 +162,10 @@
 
           <button type="submit">Submit</button>
 
+          <button type="button" onclick="clearPreferences()">
+            Clear Preferences
+          </button>
+
           <br /><br />
 
           <output id="confirmation"></output>
@@ -187,7 +193,7 @@
     <!-- JavaScript -->
     <script>
       let formSubmitted = false;
-      
+
       function confirmSubmit() {
         formSubmitted = true;
         document.getElementById("confirmation").textContent =
@@ -230,6 +236,28 @@
       function videoReady() {
         document.getElementById("videoStatus").textContent =
           "Video ready to play";
+      }
+
+      function savePreference() {
+        let value = document.getElementById("eventType").value;
+
+        localStorage.setItem("preferredEvent", value);
+        sessionStorage.setItem("preferredEvent", value);
+      }
+
+      window.onload = function () {
+        let saved = localStorage.getItem("preferredEvent");
+
+        if (saved) {
+          document.getElementById("eventType").value = saved;
+        }
+      };
+
+      function clearPreferences() {
+        localStorage.clear();
+        sessionStorage.clear();
+
+        document.getElementById("eventType").selectedIndex = 0;
       }
     </script>
   </body>
