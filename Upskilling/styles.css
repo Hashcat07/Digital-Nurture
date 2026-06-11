@@ -160,3 +160,11 @@ select:focus {
 .hidden-display {
   display: none;
 }
+
+/* Community bulletin multi-column layout */
+.news-columns {
+  column-count: 2;
+  column-gap: 30px;
+  column-rule: 1px solid gray;
+  margin-top: 10px;
+}
