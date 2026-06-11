@@ -168,3 +168,39 @@ select:focus {
   column-rule: 1px solid gray;
   margin-top: 10px;
 }
+
+/* Flexible image sizing */
+.event-image {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+}
+
+/* Responsive: screens smaller than 768px */
+@media (max-width: 768px) {
+  nav a {
+    display: block;
+    margin: 5px 0;
+  }
+
+  .event-image {
+    width: 90vw;
+    max-width: 100%;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .news-columns {
+    column-count: 1;
+  }
+
+  section h2 {
+    font-size: 1.2rem;
+  }
+}
