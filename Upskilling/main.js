@@ -402,3 +402,33 @@ const { eventName, eventFee } = eventInfo;
 
 console.log(eventName);
 console.log(eventFee);
+
+document
+  .getElementById("registrationForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const form = event.target;
+
+    const name = form.elements["name"].value;
+    const email = form.elements["email"].value;
+
+    let valid = true;
+
+    if (name.trim() === "") {
+      document.getElementById("nameError").textContent =
+        "Name is required";
+      valid = false;
+    }
+
+    if (email.trim() === "") {
+      document.getElementById("emailError").textContent =
+        "Email is required";
+      valid = false;
+    }
+
+    if (valid) {
+      document.getElementById("confirmation").textContent =
+        "Registration submitted successfully!";
+    }
+  });

@@ -170,13 +170,16 @@
             confirmSubmit();
             return false;
           "
+          id="registrationForm"
         >
           <label>Name:</label>
-          <input id="name" type="text" required autofocus />
+          <input name="email" id="name" type="text" required autofocus />
+          <p id="nameError"></p>
           <br /><br />
 
           <label>Email:</label>
-          <input id="email" type="email" required />
+          <input id="email" name="email" type="email" required />
+          <p id="emailError"></p>
           <br /><br />
 
           <label>Phone:</label>
@@ -256,8 +259,8 @@
     </main>
 
     <!-- JavaScript -->
-    <script src="main.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="main.js"></script>
     <script type="module" src="module-demo.js"></script>
   </body>
 </html>
