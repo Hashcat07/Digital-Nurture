@@ -347,3 +347,35 @@ document
       event.target.textContent
     );
   });
+
+  function fetchEvents() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve([
+        "Music Festival",
+        "Sports Day",
+        "Book Fair"
+      ]);
+    }, 2000);
+  });
+}
+
+async function loadEvents() {
+  const events = await fetchEvents();
+
+  const list = document.getElementById("eventData");
+
+  list.innerHTML = "";
+
+  events.forEach((event) => {
+    const item = document.createElement("li");
+
+    item.textContent = event;
+
+    list.appendChild(item);
+  });
+}
+
+document
+  .getElementById("loadEventsBtn")
+  .addEventListener("click", loadEvents);
