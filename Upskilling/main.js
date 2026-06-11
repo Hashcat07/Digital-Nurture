@@ -103,3 +103,17 @@ function showError(error) {
 }
 
 console.log("Welcome to the Community Portal");
+
+const eventName = "Community Music Festival";
+const eventDate = "2026-07-15";
+let availableSeats = 50;
+
+console.log(
+  `Event: ${eventName}, Date: ${eventDate}, Seats: ${availableSeats}`
+);
+
+availableSeats--;
+
+console.log(`Remaining Seats: ${availableSeats}`);
+
+
