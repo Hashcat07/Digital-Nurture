@@ -95,6 +95,15 @@
         </table>
       </section>
 
+      <!-- Nearby Events -->
+      <section id="locationFinder">
+        <h2>Find Nearby Events</h2>
+
+        <button onclick="findNearbyEvents()">Find Nearby Events</button>
+
+        <p id="location"></p>
+      </section>
+
       <!-- Registration Section -->
       <section id="registration">
         <h2>Event Registration</h2>
@@ -126,7 +135,6 @@
           <input id="date" type="date" required />
           <br /><br />
 
-          <label>Event Type:</label>
           <label for="eventType">Event Type:</label>
           <select id="eventType" onchange="savePreference()">
             <option disabled selected>Select Event</option>
@@ -258,6 +266,45 @@
         sessionStorage.clear();
 
         document.getElementById("eventType").selectedIndex = 0;
+      }
+
+      function findNearbyEvents() {
+        if (!navigator.geolocation) {
+          document.getElementById("location").textContent =
+            "Geolocation is not supported by your browser";
+          return;
+        }
+
+        navigator.geolocation.getCurrentPosition(showPosition, showError, {
+          enableHighAccuracy: true,
+          timeout: 5000,
+        });
+      }
+
+      function showPosition(position) {
+        document.getElementById("location").innerHTML =
+          "Latitude: " +
+          position.coords.latitude +
+          "<br>Longitude: " +
+          position.coords.longitude;
+      }
+
+      function showError(error) {
+        switch (error.code) {
+          case error.PERMISSION_DENIED:
+            document.getElementById("location").textContent =
+              "Permission denied";
+            break;
+
+          case error.TIMEOUT:
+            document.getElementById("location").textContent =
+              "Request timed out";
+            break;
+
+          default:
+            document.getElementById("location").textContent =
+              "Unable to retrieve location";
+        }
       }
     </script>
   </body>
