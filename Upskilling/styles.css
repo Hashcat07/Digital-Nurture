@@ -3,7 +3,7 @@
    City Council Event Portal
    =========================== */
 
-   /* Universal selector: reset margin and padding */
+/* Universal selector: reset margin and padding */
 * {
   margin: 0;
   padding: 0;
@@ -39,7 +39,7 @@ p {
 /* Body background with image and fallback color */
 body {
   background-color: #e8f4f8;
-  background-image: url('bg.jpg');
+  background-image: url("bg.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   color: #222222;
@@ -55,4 +55,27 @@ section h2 {
 /* RGBA example: highlight with transparency */
 .highlight {
   background-color: rgba(255, 255, 0, 0.6);
+}
+
+/* Body font family */
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 16px;
+}
+
+/* Section description text */
+section p {
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: 0.3px;
+  line-height: 1.7;
+}
+
+/* Welcome banner text */
+#welcomeBanner {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
