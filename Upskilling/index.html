@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>City Council Portal</title>
+
     <style>
       #welcomeBanner {
         background-color: blue;
@@ -20,11 +21,18 @@
         width: 150px;
         height: 100px;
       }
+
+      form {
+        margin-top: 20px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        width: 300px;
+      }
     </style>
   </head>
+
   <body>
     <!-- Navigation Section -->
-
     <nav>
       <a href="#home">Home</a>
       <a href="#events">Events</a>
@@ -32,93 +40,56 @@
       <a href="help.html" target="_blank">Help</a>
     </nav>
 
+    <!-- Welcome Banner -->
     <div id="welcomeBanner">
       Welcome Resident!
-
       <span style="color: red; font-weight: bold">
         20% Registration Discount
       </span>
     </div>
 
     <p class="highlight">Early registrations receive priority seating.</p>
+
     <!-- Main Section -->
     <main>
+      <!-- Home -->
       <section id="home">
         <h1>Home</h1>
         <p>Welcome to our community portal.</p>
       </section>
 
+      <!-- Events -->
       <section id="events">
         <h2>Past Events Gallery</h2>
 
         <table>
           <tr>
             <td>
-              <img
-                src="event1.jpg"
-                alt="Music Event"
-                title="Music Event"
-                class="event-image"
-              />
-              <br />
-              Music Festival
+              <img src="event1.jpg" class="event-image" alt="Music Event" />
+              <br />Music Festival
             </td>
-
             <td>
-              <img
-                src="event2.jpg"
-                alt="Food Event"
-                title="Food Event"
-                class="event-image"
-              />
-              <br />
-              Food Fair
+              <img src="event2.jpg" class="event-image" alt="Food Event" />
+              <br />Food Fair
             </td>
-
             <td>
-              <img
-                src="event3.jpg"
-                alt="Sports Event"
-                title="Sports Event"
-                class="event-image"
-              />
-              <br />
-              Sports Day
+              <img src="event3.jpg" class="event-image" alt="Sports Event" />
+              <br />Sports Day
             </td>
           </tr>
 
           <tr>
             <td>
-              <img
-                src="event4.jpg"
-                alt="Book Event"
-                title="Book Event"
-                class="event-image"
-              />
-              <br />
-              Book Fair
+              <img src="event4.jpg" class="event-image" alt="Book Event" />
+              <br />Book Fair
             </td>
-
             <td>
-              <img
-                src="event5.jpg"
-                alt="Art Event"
-                title="Art Event"
-                class="event-image"
-              />
-              <br />
-              Art Exhibition
+              <img src="event5.jpg" class="event-image" alt="Art Event" />
+              <br />Art Exhibition
             </td>
-
             <td>
-              <img
-                src="event6.jpg"
-                alt="Dance Event"
-                title="Dance Event"
-                class="event-image"
-              />
-              <br />
-              Dance Competition
+              <img src="event6.jpg" class="event-image" alt="Dance Event" />
+              <br />Dance Competition
             </td>
           </tr>
         </table>
@@ -126,84 +97,114 @@
 
       <!-- Registration Section -->
       <section id="registration">
-  <h2>Event Registration</h2>
+        <h2>Event Registration</h2>
 
-  <form onsubmit="showMessage(); return false;">
+        <form
+          onsubmit="
+            confirmSubmit();
+            return false;
+          "
+        >
+          <label>Name:</label>
+          <input id="name" type="text" required autofocus />
+          <br /><br />
 
-    <!-- Name -->
-    <label for="name">Name:</label>
-    <input
-      id="name"
-      type="text"
-      placeholder="Enter Name"
-      required
-      autofocus
-    />
+          <label>Email:</label>
+          <input id="email" type="email" required />
+          <br /><br />
 
-    <br /><br />
+          <label>Phone:</label>
+          <input
+            id="phone"
+            type="text"
+            onblur="validatePhone()"
+            placeholder="10-digit number"
+          />
+          <br /><br />
 
-    <!-- Email -->
-    <label for="email">Email:</label>
-    <input
-      id="email"
-      type="email"
-      placeholder="Enter Email"
-      required
-    />
+          <label>Date:</label>
+          <input id="date" type="date" required />
+          <br /><br />
 
-    <br /><br />
+          <label>Event Type:</label>
+          <select id="eventType" onchange="showFee()">
+            <option>Workshop</option>
+            <option>Music</option>
+            <option>Sports</option>
+          </select>
 
-    <!-- Date -->
-    <label for="date">Date:</label>
-    <input
-      id="date"
-      type="date"
-      required
-    />
+          <p id="fee"></p>
 
-    <br /><br />
+          <br />
 
-    <!-- Event Type -->
-    <label for="eventType">Event Type:</label>
-    <select id="eventType" required>
-      <option disabled selected>Select Event Type</option>
-      <option>Workshop</option>
-      <option>Sports</option>
-      <option>Music</option>
-    </select>
+          <label>Message:</label>
+          <textarea id="message"></textarea>
 
-    <br /><br />
+          <br /><br />
 
-    <!-- Message -->
-    <label for="message">Message:</label>
-    <textarea
-      id="message"
-      placeholder="Enter your message"
-    ></textarea>
+          <img
+            src="event1.jpg"
+            width="150"
+            ondblclick="enlarge(this)"
+            alt="Event Image"
+          />
 
-    <br /><br />
+          <br /><br />
 
-    <!-- Submit -->
-    <button type="submit">Register</button>
+          <label>Feedback:</label>
+          <textarea id="feedback" onkeyup="countChars()"></textarea>
 
-    <br /><br />
+          <p id="counter">0 characters</p>
 
-    <!-- Output -->
-    <output id="confirmation"></output>
+          <br />
 
-  </form>
-</section>
+          <button type="submit">Submit</button>
 
+          <br /><br />
+
+          <output id="confirmation"></output>
+        </form>
+      </section>
+
+      <!-- Contact -->
       <section id="contact">
-        <h1>Contact</h1>
+        <h2>Contact</h2>
         <p>Contact information.</p>
       </section>
     </main>
 
+    <!-- JavaScript -->
     <script>
-      function showMessage() {
+      function confirmSubmit() {
         document.getElementById("confirmation").textContent =
           "Registration submitted successfully!";
+      }
+
+      function validatePhone() {
+        let phone = document.getElementById("phone").value;
+        if (phone.length !== 10) {
+          alert("Phone must be 10 digits");
+        }
+      }
+
+      function showFee() {
+        let type = document.getElementById("eventType").value;
+        let fee = 0;
+
+        if (type === "Workshop") fee = 100;
+        if (type === "Music") fee = 75;
+        if (type === "Sports") fee = 50;
+
+        document.getElementById("fee").textContent = "Fee: $" + fee;
+      }
+
+      function enlarge(img) {
+        img.style.width = "300px";
+      }
+
+      function countChars() {
+        let count = document.getElementById("feedback").value.length;
+        document.getElementById("counter").textContent = count + " characters";
       }
     </script>
   </body>
