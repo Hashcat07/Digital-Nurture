@@ -166,6 +166,17 @@
         </form>
       </section>
 
+      <!-- Video -->
+      <section id="video">
+        <h2>Community Event Promo</h2>
+
+        <video width="400" controls oncanplay="videoReady()">
+          <source src="promo.mp4" type="video/mp4" />
+        </video>
+
+        <p id="videoStatus"></p>
+      </section>
+
       <!-- Contact -->
       <section id="contact">
         <h2>Contact</h2>
@@ -175,10 +186,19 @@
 
     <!-- JavaScript -->
     <script>
+      let formSubmitted = false;
+      
       function confirmSubmit() {
+        formSubmitted = true;
         document.getElementById("confirmation").textContent =
           "Registration submitted successfully!";
       }
+
+      window.onbeforeunload = function () {
+        if (!formSubmitted) {
+          return "You have unsaved changes!";
+        }
+      };
 
       function validatePhone() {
         let phone = document.getElementById("phone").value;
@@ -205,6 +225,11 @@
       function countChars() {
         let count = document.getElementById("feedback").value.length;
         document.getElementById("counter").textContent = count + " characters";
+      }
+
+      function videoReady() {
+        document.getElementById("videoStatus").textContent =
+          "Video ready to play";
       }
     </script>
   </body>
