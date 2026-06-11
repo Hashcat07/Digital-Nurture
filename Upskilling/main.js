@@ -56,6 +56,8 @@ window.onload = function () {
   if (saved) {
     document.getElementById("eventType").value = saved;
   }
+
+  alert("Page loaded successfully");
 };
 
 function clearPreferences() {
@@ -116,4 +118,26 @@ availableSeats--;
 
 console.log(`Remaining Seats: ${availableSeats}`);
 
+const events = [
+  { name: "Music Festival", seats: 20, upcoming: true },
+  { name: "Old Workshop", seats: 0, upcoming: false },
+  { name: "Sports Day", seats: 15, upcoming: true },
+];
 
+events.forEach((event) => {
+  if (event.upcoming && event.seats > 0) {
+    console.log(event.name);
+  }
+});
+
+try {
+  let seats = 10;
+
+  if (seats <= 0) {
+    throw new Error("No seats available");
+  }
+
+  seats--;
+} catch (error) {
+  console.error(error.message);
+}
