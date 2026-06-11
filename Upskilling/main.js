@@ -379,3 +379,26 @@ async function loadEvents() {
 document
   .getElementById("loadEventsBtn")
   .addEventListener("click", loadEvents);
+
+  function registerParticipant(name = "Guest") {
+  console.log(`${name} registered`);
+}
+
+registerParticipant();
+registerParticipant("Ray");
+
+function totalFees(...fees) {
+  return fees.reduce((sum, fee) => sum + fee, 0);
+}
+
+console.log(totalFees(100, 75, 50));
+
+const eventInfo = {
+  eventName: "Music Festival",
+  eventFee: 75,
+};
+
+const { eventName, eventFee } = eventInfo;
+
+console.log(eventName);
+console.log(eventFee);
