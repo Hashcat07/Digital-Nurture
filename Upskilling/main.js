@@ -236,3 +236,46 @@ const premium = new PremiumEvent(
 
 premium.showDetails();
 premium.showPerks();
+
+const communityEvents = [
+  { name: "Workshop", fee: 100 },
+  { name: "Music", fee: 75 },
+  { name: "Sports", fee: 50 },
+];
+
+const eventNames = communityEvents.map(
+  (event) => event.name
+);
+
+console.log(eventNames);
+
+const lowCostEvents = communityEvents.filter(
+  (event) => event.fee <= 75
+);
+
+console.log(lowCostEvents);
+
+const musicEventData = communityEvents.find(
+  (event) => event.name === "Music"
+);
+
+console.log(musicEventData);
+
+const totalFees = communityEvents.reduce(
+  (sum, event) => sum + event.fee,
+  0
+);
+
+console.log(totalFees);
+
+const [firstEvent, secondEvent] = communityEvents;
+
+console.log(firstEvent);
+console.log(secondEvent);
+
+const additionalEvents = [
+  ...communityEvents,
+  { name: "Art", fee: 60 },
+];
+
+console.log(additionalEvents);
