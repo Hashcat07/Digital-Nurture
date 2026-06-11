@@ -141,3 +141,40 @@ try {
 } catch (error) {
   console.error(error.message);
 }
+
+function addEvent(name) {
+  console.log("Event Added: " + name);
+}
+
+const registerUser = function (userName) {
+  console.log(userName + " registered successfully");
+};
+
+function eventCounter() {
+  let count = 0;
+
+  return function () {
+    count++;
+    console.log("Registrations: " + count);
+  };
+}
+
+const countRegistration = eventCounter();
+
+countRegistration();
+countRegistration();
+
+const eventsList = [
+  { name: "Workshop", fee: 100 },
+  { name: "Music", fee: 75 },
+  { name: "Sports", fee: 50 }
+];
+
+const affordableEvents = eventsList.filter(
+  (event) => event.fee <= 75
+);
+
+console.log(affordableEvents);
+
+addEvent("Music Festival");
+registerUser("Ray");
