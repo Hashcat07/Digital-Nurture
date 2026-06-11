@@ -298,3 +298,52 @@ function removeBulletin() {
     container.removeChild(container.lastElementChild);
   }
 }
+
+function addBulletin() {
+  const container = document.getElementById(
+    "bulletinContainer"
+  );
+
+  const bulletin = document.createElement("p");
+
+  bulletin.textContent =
+    "New community cleanup drive scheduled for this Sunday.";
+
+  bulletin.style.color = "blue";
+
+  container.appendChild(bulletin);
+}
+
+function removeBulletin() {
+  const container = document.getElementById(
+    "bulletinContainer"
+  );
+
+  if (container.lastElementChild) {
+    container.removeChild(container.lastElementChild);
+  }
+}
+
+document
+  .getElementById("addNewsBtn")
+  .addEventListener("click", function (event) {
+    event.preventDefault();
+
+    const newsList =
+      document.getElementById("newsList");
+
+    const item = document.createElement("li");
+
+    item.textContent = "Community Cleanup Drive";
+
+    newsList.appendChild(item);
+  });
+
+document
+  .getElementById("newsList")
+  .addEventListener("click", function (event) {
+    console.log(
+      "Clicked:",
+      event.target.textContent
+    );
+  });
