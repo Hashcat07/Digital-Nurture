@@ -178,3 +178,61 @@ console.log(affordableEvents);
 
 addEvent("Music Festival");
 registerUser("Ray");
+
+const eventDetails = {
+  name: "Community Workshop",
+  date: "2026-07-15",
+  fee: 100,
+
+  displayInfo() {
+    console.log(
+      `${this.name} on ${this.date} - Fee: $${this.fee}`
+    );
+  },
+};
+
+eventDetails.displayInfo();
+
+function Event(name, fee) {
+  this.name = name;
+  this.fee = fee;
+}
+
+Event.prototype.showFee = function () {
+  console.log(`${this.name} Fee: $${this.fee}`);
+};
+
+const musicEvent = new Event("Music Festival", 75);
+
+musicEvent.showFee();
+
+class CommunityEvent {
+  constructor(name, fee) {
+    this.name = name;
+    this.fee = fee;
+  }
+
+  showDetails() {
+    console.log(`${this.name} - $${this.fee}`);
+  }
+}
+
+class PremiumEvent extends CommunityEvent {
+  constructor(name, fee, perks) {
+    super(name, fee);
+    this.perks = perks;
+  }
+
+  showPerks() {
+    console.log(`Perks: ${this.perks}`);
+  }
+}
+
+const premium = new PremiumEvent(
+  "VIP Music Festival",
+  150,
+  "Front Row Seating"
+);
+
+premium.showDetails();
+premium.showPerks();
