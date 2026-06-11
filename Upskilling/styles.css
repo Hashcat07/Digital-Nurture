@@ -2,3 +2,36 @@
    External Stylesheet
    City Council Event Portal
    =========================== */
+
+   /* Universal selector: reset margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Element selector: style all h2 */
+h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* ID selector: main welcome banner */
+#welcomeBanner {
+  background-color: blue;
+  color: white;
+  padding: 15px;
+}
+
+/* Class selector: event card containers */
+.eventCard {
+  text-align: center;
+  padding: 10px;
+}
+
+/* Grouping selector: h3 and p together */
+h3,
+p {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
