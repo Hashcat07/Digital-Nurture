@@ -456,3 +456,7 @@ document
       });
   }, 2000);
 }
+
+$("#registerBtn").click(function () {
+  $(".eventCard").fadeOut(1000).fadeIn(1000);
+});
