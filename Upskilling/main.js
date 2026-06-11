@@ -279,3 +279,22 @@ const additionalEvents = [
 ];
 
 console.log(additionalEvents);
+
+function addBulletin() {
+  const container = document.getElementById("bulletinContainer");
+
+  const bulletin = document.createElement("p");
+
+  bulletin.textContent =
+    "New community cleanup drive scheduled for this Sunday.";
+
+  container.appendChild(bulletin);
+}
+
+function removeBulletin() {
+  const container = document.getElementById("bulletinContainer");
+
+  if (container.lastElementChild) {
+    container.removeChild(container.lastElementChild);
+  }
+}
