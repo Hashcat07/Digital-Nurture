@@ -432,3 +432,27 @@ document
         "Registration submitted successfully!";
     }
   });
+
+  function submitRegistration() {
+  const user = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+  };
+
+  setTimeout(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then(() => {
+        console.log("Registration successful");
+      })
+      .catch(() => {
+        console.log("Registration failed");
+      });
+  }, 2000);
+}
