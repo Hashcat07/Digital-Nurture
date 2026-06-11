@@ -79,3 +79,36 @@ section p {
   font-weight: 700;
   letter-spacing: 1px;
 }
+
+/* Link pseudo-classes */
+a:link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #6c63ff;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #ff4500;
+}
+
+/* Nav menu: remove bullets, add spacing */
+nav {
+  list-style-type: none;
+  padding: 10px;
+  background-color: #333;
+}
+
+nav a {
+  color: white;
+  margin-right: 15px;
+  padding: 5px 10px;
+  display: inline-block;
+}
