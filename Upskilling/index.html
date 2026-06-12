@@ -173,7 +173,7 @@
           id="registrationForm"
         >
           <label>Name:</label>
-          <input name="email" id="name" type="text" required autofocus />
+          <input name="name" id="name" type="text" required autofocus />
           <p id="nameError"></p>
           <br /><br />
 
@@ -196,7 +196,7 @@
           <br /><br />
 
           <label for="eventType">Event Type:</label>
-          <select id="eventType" onchange="savePreference()">
+          <select id="eventType" onchange="showFee(); savePreference() ">
             <option disabled selected>Select Event</option>
             <option>Workshop</option>
             <option>Music</option>

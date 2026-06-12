@@ -435,7 +435,7 @@ document
 
   function submitRegistration() {
   const user = {
-    name: document.getElementById("name").value,
+    name: document.querySelector("#name").value,
     email: document.getElementById("email").value,
   };
 
