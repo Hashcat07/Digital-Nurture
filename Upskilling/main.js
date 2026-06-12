@@ -111,7 +111,7 @@ const eventDate = "2026-07-15";
 let availableSeats = 50;
 
 console.log(
-  `Event: ${eventName}, Date: ${eventDate}, Seats: ${availableSeats}`
+  `Event: ${eventName}, Date: ${eventDate}, Seats: ${availableSeats}`,
 );
 
 availableSeats--;
@@ -167,12 +167,11 @@ countRegistration();
 const eventsList = [
   { name: "Workshop", fee: 100 },
   { name: "Music", fee: 75 },
-  { name: "Sports", fee: 50 }
 ];
 
-const affordableEvents = eventsList.filter(
-  (event) => event.fee <= 75
-);
+eventsList.push({ name: "Sports", fee: 50 });
+
+const affordableEvents = eventsList.filter((event) => event.fee <= 75);
 
 console.log(affordableEvents);
 
@@ -185,9 +184,7 @@ const eventDetails = {
   fee: 100,
 
   displayInfo() {
-    console.log(
-      `${this.name} on ${this.date} - Fee: $${this.fee}`
-    );
+    console.log(`${this.name} on ${this.date} - Fee: $${this.fee}`);
   },
 };
 
@@ -231,7 +228,7 @@ class PremiumEvent extends CommunityEvent {
 const premium = new PremiumEvent(
   "VIP Music Festival",
   150,
-  "Front Row Seating"
+  "Front Row Seating",
 );
 
 premium.showDetails();
@@ -243,28 +240,19 @@ const communityEvents = [
   { name: "Sports", fee: 50 },
 ];
 
-const eventNames = communityEvents.map(
-  (event) => event.name
-);
+const eventNames = communityEvents.map((event) => event.name);
 
 console.log(eventNames);
 
-const lowCostEvents = communityEvents.filter(
-  (event) => event.fee <= 75
-);
+const lowCostEvents = communityEvents.filter((event) => event.fee <= 75);
 
 console.log(lowCostEvents);
 
-const musicEventData = communityEvents.find(
-  (event) => event.name === "Music"
-);
+const musicEventData = communityEvents.find((event) => event.name === "Music");
 
 console.log(musicEventData);
 
-const totalFees = communityEvents.reduce(
-  (sum, event) => sum + event.fee,
-  0
-);
+const totalFees = communityEvents.reduce((sum, event) => sum + event.fee, 0);
 
 console.log(totalFees);
 
@@ -273,10 +261,7 @@ const [firstEvent, secondEvent] = communityEvents;
 console.log(firstEvent);
 console.log(secondEvent);
 
-const additionalEvents = [
-  ...communityEvents,
-  { name: "Art", fee: 60 },
-];
+const additionalEvents = [...communityEvents, { name: "Art", fee: 60 }];
 
 console.log(additionalEvents);
 
@@ -300,9 +285,7 @@ function removeBulletin() {
 }
 
 function addBulletin() {
-  const container = document.getElementById(
-    "bulletinContainer"
-  );
+  const container = document.getElementById("bulletinContainer");
 
   const bulletin = document.createElement("p");
 
@@ -315,9 +298,7 @@ function addBulletin() {
 }
 
 function removeBulletin() {
-  const container = document.getElementById(
-    "bulletinContainer"
-  );
+  const container = document.getElementById("bulletinContainer");
 
   if (container.lastElementChild) {
     container.removeChild(container.lastElementChild);
@@ -329,8 +310,7 @@ document
   .addEventListener("click", function (event) {
     event.preventDefault();
 
-    const newsList =
-      document.getElementById("newsList");
+    const newsList = document.getElementById("newsList");
 
     const item = document.createElement("li");
 
@@ -339,23 +319,14 @@ document
     newsList.appendChild(item);
   });
 
-document
-  .getElementById("newsList")
-  .addEventListener("click", function (event) {
-    console.log(
-      "Clicked:",
-      event.target.textContent
-    );
-  });
+document.getElementById("newsList").addEventListener("click", function (event) {
+  console.log("Clicked:", event.target.textContent);
+});
 
-  function fetchEvents() {
+function fetchEvents() {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve([
-        "Music Festival",
-        "Sports Day",
-        "Book Fair"
-      ]);
+      resolve(["Music Festival", "Sports Day", "Book Fair"]);
     }, 2000);
   });
 }
@@ -376,11 +347,9 @@ async function loadEvents() {
   });
 }
 
-document
-  .getElementById("loadEventsBtn")
-  .addEventListener("click", loadEvents);
+document.getElementById("loadEventsBtn").addEventListener("click", loadEvents);
 
-  function registerParticipant(name = "Guest") {
+function registerParticipant(name = "Guest") {
   console.log(`${name} registered`);
 }
 
@@ -416,14 +385,12 @@ document
     let valid = true;
 
     if (name.trim() === "") {
-      document.getElementById("nameError").textContent =
-        "Name is required";
+      document.getElementById("nameError").textContent = "Name is required";
       valid = false;
     }
 
     if (email.trim() === "") {
-      document.getElementById("emailError").textContent =
-        "Email is required";
+      document.getElementById("emailError").textContent = "Email is required";
       valid = false;
     }
 
@@ -433,7 +400,7 @@ document
     }
   });
 
-  function submitRegistration() {
+function submitRegistration() {
   const user = {
     name: document.querySelector("#name").value,
     email: document.getElementById("email").value,
