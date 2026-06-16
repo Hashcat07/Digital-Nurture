@@ -29,6 +29,36 @@
         </div>
       </div>
     </nav>
+    <nav
+      class="navbar navbar-expand-lg navbar-light bg-light border-bottom mt-4"
+    >
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">My Shop</a>
+        <button
+          class="navbar-toggler"
+          data-bs-toggle="collapse"
+          data-bs-target="#shopnav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="shopnav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+          </ul>
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+            />
+            <button class="btn btn-outline-secondary">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
     <div class="container mt-5">
       <h1 class="display-4">Welcome to my portfolio</h1>
       <p class="lead">Building responsive websites with Bootstrap 5</p>
@@ -235,6 +265,30 @@
         <label class="btn btn-outline-secondary" for="grid">Grid</label>
         <input type="radio" class="btn-check" name="view" id="list" />
         <label class="btn btn-outline-secondary" for="list">List</label>
+      </div>
+    </section>
+    <section class="container mt-5">
+      <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+          <button
+            class="nav-link active"
+            data-bs-toggle="tab"
+            data-bs-target="#basic"
+          >
+            Basic
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#pro">
+            Pro
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="basic">
+          <p>$29/mo — for startups</p>
+        </div>
+        <div class="tab-pane fade" id="pro"><p>$99/mo — for teams</p></div>
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
