@@ -437,6 +437,89 @@
         <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
       </div>
     </section>
+    <section class="container mt-5">
+      <button
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#contact"
+      >
+        Get in Touch
+      </button>
+    </section>
+
+    <section class="container mt-5">
+      <div class="accordion" id="faq">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button"
+              data-bs-toggle="collapse"
+              data-bs-target="#q1"
+            >
+              How do I get started?
+            </button>
+          </h2>
+          <div
+            id="q1"
+            class="accordion-collapse collapse show"
+            data-bs-parent="#faq"
+          >
+            <div class="accordion-body">
+              Sign up free and follow the setup guide.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              data-bs-toggle="collapse"
+              data-bs-target="#q2"
+            >
+              What payment methods do you take?
+            </button>
+          </h2>
+          <div
+            id="q2"
+            class="accordion-collapse collapse"
+            data-bs-parent="#faq"
+          >
+            <div class="accordion-body">
+              All major cards, PayPal, and bank transfer.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal fade" id="contact" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Contact Us</h5>
+            <button class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <input
+              type="email"
+              class="form-control mb-3"
+              placeholder="Your email"
+            />
+            <textarea
+              class="form-control"
+              rows="4"
+              placeholder="Message"
+            ></textarea>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button class="btn btn-primary">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <footer
       class="position-fixed bottom-0 start-0 end-0 bg-dark text-white p-3"
     >
