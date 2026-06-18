@@ -31,7 +31,7 @@ public class Logger {
         Logger obj1=Logger.returnInstance();
         Logger obj2=Logger.returnInstance();
 
-        System.out.println("Are the Objects/Instanes same: "+ (obj1==obj2));//prints true
+        System.out.println("Are the Objects/Instances same: "+ (obj1==obj2));//prints true
 
     }
 }
