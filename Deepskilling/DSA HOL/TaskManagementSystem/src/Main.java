@@ -21,3 +21,15 @@ public class Main {
         tasks.displayTasks();
     }
 }
+
+/*
+ * EXERCISE 5: Task Management System (SINGLY LINKED LIST)
+ * Each task is a Node that points to the next task.
+ *
+ * add (at end) : O(n)  -> walk to the tail (O(1) if you keep a tail pointer)
+ * search       : O(n)  -> follow links until found
+ * traverse     : O(n)  -> visit every node
+ * delete       : O(n)  -> find node, re-link its predecessor to its successor
+ *
+ * Strength vs array: insert/delete do NOT shift elements, just re-wire pointers.
+ */
