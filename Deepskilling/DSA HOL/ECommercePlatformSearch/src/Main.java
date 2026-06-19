@@ -28,3 +28,10 @@ public class Main {
         System.out.println("  " + searchAlgorithms.binarySearch(sorted, 104));
     }
 }
+/*
+ * EXERCISE 2: E-commerce Platform Search Function
+ * Implements LINEAR search and BINARY search.
+ *
+ * Linear search  : O(n)        - checks items one by one
+ * Binary search  : O(log n)    - needs the data SORTED
+ */
