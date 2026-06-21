@@ -42,3 +42,12 @@ CREATE TABLE Employees (
     Department VARCHAR2(50),
     HireDate DATE
 );
+
+CREATE TABLE AuditLog (
+    LogID NUMBER PRIMARY KEY,
+    TransactionID NUMBER,
+    AccountID NUMBER,
+    Amount NUMBER,
+    TransactionType VARCHAR2(10),
+    LogDate DATE
+);
