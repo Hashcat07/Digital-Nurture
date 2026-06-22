@@ -1,3 +1,7 @@
+# Maven
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
 # Eclipse
 .classpath
 .project
@@ -5,7 +9,7 @@
 bin/
 .metadata/
 
-# IntelliJ
+# IntelliJ IDEA
 .idea/
 *.iml
 
@@ -15,12 +19,11 @@ bin/
 # Java
 *.class
 out/
-target/
 
 # Logs
 *.log
 
-# OS
+# OS Files
 .DS_Store
 Thumbs.db
 
