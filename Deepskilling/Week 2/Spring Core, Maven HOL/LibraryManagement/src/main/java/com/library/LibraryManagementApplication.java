@@ -9,8 +9,8 @@ public class LibraryManagementApplication {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
         BookService bookService = context.getBean("bookService", BookService.class);
-        bookService.run();
-
+//        bookService.run();
+        bookService.printBook(101);
         context.close();
     }
 }
