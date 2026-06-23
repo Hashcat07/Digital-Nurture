@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
            http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans.xsd">
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <aop:aspectj-autoproxy/>
 
     <bean id="bookRepository" class="com.library.repository.BookRepository"/>
 
@@ -11,5 +16,7 @@
         <constructor-arg ref="bookRepository"/>
         <property name="libraryName" value="Central Library"/>
     </bean>
+
+    <bean id="loggingAspect" class="com.library.aspect.LoggingAspect"/>
 
 </beans>
