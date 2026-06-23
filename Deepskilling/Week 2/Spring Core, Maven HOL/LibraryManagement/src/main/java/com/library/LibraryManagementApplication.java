@@ -1,16 +1,11 @@
-package com.library;
+package com.library;   // ROOT package — must sit ABOVE model/repository/controller
 
-import com.library.service.BookService;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class LibraryManagementApplication {
-
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
-
-        BookService bookService = context.getBean(BookService.class);
-//        bookService.run();
-        bookService.printBook(101);
-        context.close();
+        SpringApplication.run(LibraryManagementApplication.class, args);
     }
 }
