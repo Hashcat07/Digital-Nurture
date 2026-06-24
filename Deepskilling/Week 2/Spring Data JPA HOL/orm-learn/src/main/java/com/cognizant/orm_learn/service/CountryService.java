@@ -32,4 +32,9 @@ public class CountryService {
 
         return country.get();
     }
+
+    @Transactional
+    public void addCountry(Country country) {
+        countryRepository.save(country);
+    }
 }

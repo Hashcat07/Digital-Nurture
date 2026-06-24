@@ -18,14 +18,14 @@ public class OrmLearnApplication {
 
 	private static CountryService countryService;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 
-		ApplicationContext context =
-				SpringApplication.run(OrmLearnApplication.class,args);
+		ApplicationContext context = SpringApplication.run(OrmLearnApplication.class,args);
 
 		countryService = context.getBean(CountryService.class);
 
-		testGetAllCountries();
+		//testGetAllCountries();
+		testAddCountry();
 
 		LOGGER.info("Inside main");
 	}
@@ -39,6 +39,16 @@ public class OrmLearnApplication {
 
 		LOGGER.debug("Countries={}",countries);
 
+		LOGGER.info("End");
+	}
+
+	private static void testAddCountry() throws Exception {
+
+		LOGGER.info("Start");
+		Country country = new Country("RG", "RagulLand");
+		countryService.addCountry(country);
+		Country result = countryService.findCountryByCode("RG");
+		LOGGER.debug("Country={}", result);
 		LOGGER.info("End");
 	}
 }
