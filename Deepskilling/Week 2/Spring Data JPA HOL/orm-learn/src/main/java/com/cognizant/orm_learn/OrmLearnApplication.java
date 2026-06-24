@@ -51,4 +51,15 @@ public class OrmLearnApplication {
 		LOGGER.debug("Country={}", result);
 		LOGGER.info("End");
 	}
+
+	private static void testUpdateCountry() throws Exception {
+
+		LOGGER.info("Start");
+		countryService.updateCountry("RG", "Ragul Country");
+
+		Country country = countryService.findCountryByCode("RG");
+		LOGGER.debug("Country={}", country);
+
+		LOGGER.info("End");
+	}
 }

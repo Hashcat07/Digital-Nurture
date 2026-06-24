@@ -37,4 +37,10 @@ public class CountryService {
     public void addCountry(Country country) {
         countryRepository.save(country);
     }
+    @Transactional
+    public void updateCountry(String code, String name) throws CountryNotFoundException {
+        Country country = findCountryByCode(code);
+        country.setName(name);
+        countryRepository.save(country);
+    }
 }
