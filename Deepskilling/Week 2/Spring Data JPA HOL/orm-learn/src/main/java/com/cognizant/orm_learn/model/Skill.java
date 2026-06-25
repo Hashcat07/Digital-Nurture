@@ -2,6 +2,8 @@ package com.cognizant.orm_learn.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "skill")
 public class Skill {
@@ -13,6 +15,17 @@ public class Skill {
 
     @Column(name = "sk_name")
     private String name;
+
+    @ManyToMany(mappedBy = "skillList")
+    private Set<Employee> employeeList;
+
+    public Set<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(Set<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
 
     public Skill() {
     }

@@ -2,6 +2,8 @@ package com.cognizant.orm_learn.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "department")
 public class Department {
@@ -13,6 +15,17 @@ public class Department {
 
     @Column(name = "dp_name")
     private String name;
+
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
+    private List<Employee> employees;
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
 
     public Department() {
     }

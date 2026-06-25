@@ -1,9 +1,11 @@
 package com.cognizant.orm_learn;
 
-import com.cognizant.orm_learn.model.Country;
-import com.cognizant.orm_learn.model.Stock;
+import com.cognizant.orm_learn.model.*;
 import com.cognizant.orm_learn.repository.StockRepository;
 import com.cognizant.orm_learn.service.CountryService;
+import com.cognizant.orm_learn.service.DepartmentService;
+import com.cognizant.orm_learn.service.EmployeeService;
+import com.cognizant.orm_learn.service.SkillService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -22,12 +24,21 @@ public class OrmLearnApplication {
 	
 	private static StockRepository stockRepository;
 
+	private static EmployeeService employeeService;
+
+	private static DepartmentService departmentService;
+
+	private static SkillService skillService;
+
 	public static void main(String[] args) throws Exception{
 
 		ApplicationContext context = SpringApplication.run(OrmLearnApplication.class,args);
 
 		countryService = context.getBean(CountryService.class);
 		stockRepository=context.getBean(StockRepository.class);
+		employeeService = context.getBean(EmployeeService.class);
+		departmentService = context.getBean(DepartmentService.class);
+		skillService = context.getBean(SkillService.class);
 
 //		testGetAllCountries();
 //		testAddCountry();
@@ -39,6 +50,8 @@ public class OrmLearnApplication {
 		testGoogleStocks();
 		testNetflixStocks();
 		testTopVolumeStock();
+		testGetEmployee();
+		testAddEmployee();
 		LOGGER.info("Inside main");
 	}
 
@@ -105,21 +118,77 @@ public class OrmLearnApplication {
 	}
 
 	private static void testFacebookStocks(){
-		List<Stock> stock=stockRepository.findByCodeAndDateBetween("FB", LocalDate.of(2019,9,1),LocalDate.of(2019,9,30));
-		stock.forEach(System.out::println);
+		LOGGER.info("Start - Facebook Stocks");
+		List<Stock> stock=stockRepository.findByCodeAndDateBetween("FB",LocalDate.of(2019,9,1),LocalDate.of(2019,9,30));
+		stock.forEach(s->LOGGER.debug("Stock: {}",s));
+		LOGGER.info("End - Facebook Stocks");
 	}
 
 	private static void testGoogleStocks(){
+		LOGGER.info("Start - Google Stocks");
 		List<Stock> stock=stockRepository.findByCodeAndCloseGreaterThan("GOOGL",1250);
-		stock.forEach(System.out::println);
+		stock.forEach(s->LOGGER.debug("Stock: {}",s));
+		LOGGER.info("End - Google Stocks");
 	}
 
 	private static void testTopVolumeStock(){
-		stockRepository.findTop3ByOrderByVolumeDesc().forEach(System.out::println);
+		LOGGER.info("Start - Top Volume Stocks");
+		stockRepository.findTop3ByOrderByVolumeDesc().forEach(s->LOGGER.debug("Stock: {}",s));
+		LOGGER.info("End - Top Volume Stocks");
 	}
 
 	private static void testNetflixStocks(){
-		stockRepository.findTop3ByOrderByVolumeDesc().forEach(System.out::println);
+		LOGGER.info("Start - Netflix Lowest Stocks");
+		stockRepository.findTop3ByCodeOrderByCloseAsc("NFLX").forEach(s->LOGGER.debug("Stock: {}",s));
+		LOGGER.info("End - Netflix Lowest Stocks");
+	}
+
+	private static void testGetEmployee() {
+
+		LOGGER.info("Start");
+		Employee employee = employeeService.get(1);
+		LOGGER.debug("Employee:{}", employee);
+		LOGGER.debug("Department:{}", employee.getDepartment());
+		LOGGER.debug("Skills: {}",employee.getSkillList());
+		LOGGER.info("End");
+	}
+
+	private static void testAddEmployee() {
+
+		LOGGER.info("Start");
+
+		Employee employee = new Employee();
+		employee.setName("Ragul");
+		employee.setSalary(50000);
+		employee.setPermanent(true);
+		Department department = departmentService.get(1);
+		employee.setDepartment(department);
+		employeeService.save(employee);
+		LOGGER.debug("Employee:{}", employee);
+		LOGGER.info("End");
+	}
+
+	private static void testUpdateEmployee() {
+
+		LOGGER.info("Start");
+		Employee employee = employeeService.get(1);
+		Department newDept = departmentService.get(2);
+		employee.setDepartment(newDept);
+		employeeService.save(employee);
+		LOGGER.debug("Updated Employee: {}", employee);
+		LOGGER.info("End");
+	}
+
+	private static void testAddSkillToEmployee() {
+
+		LOGGER.info("Start");
+
+		Employee employee = employeeService.get(1);
+		Skill skill = skillService.get(1);
+		employee.getSkillList().add(skill);
+		employeeService.save(employee);
+		LOGGER.debug("Employee with skills updated: {}", employee);
+		LOGGER.info("End");
 	}
 
 }
