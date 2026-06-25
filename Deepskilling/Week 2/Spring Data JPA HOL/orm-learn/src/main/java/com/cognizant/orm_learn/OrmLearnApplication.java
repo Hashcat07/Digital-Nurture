@@ -13,8 +13,7 @@ import java.util.List;
 @SpringBootApplication
 public class OrmLearnApplication {
 
-	private static final Logger LOGGER =
-			LoggerFactory.getLogger(OrmLearnApplication.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(OrmLearnApplication.class);
 
 	private static CountryService countryService;
 
@@ -25,8 +24,10 @@ public class OrmLearnApplication {
 		countryService = context.getBean(CountryService.class);
 
 		//testGetAllCountries();
-		testAddCountry();
-
+//		testAddCountry();
+		testCountriesStartingWith();
+		testSearchCountries();
+		testSearchCountriesSorted();
 		LOGGER.info("Inside main");
 	}
 
@@ -60,6 +61,27 @@ public class OrmLearnApplication {
 		Country country = countryService.findCountryByCode("RG");
 		LOGGER.debug("Country={}", country);
 
+		LOGGER.info("End");
+	}
+
+	private static void testSearchCountries() {
+		LOGGER.info("Start");
+		List<Country> countries = countryService.searchCountries("ou");
+		LOGGER.debug("Countries={}", countries);
+		LOGGER.info("End");
+	}
+
+	private static void testSearchCountriesSorted() {
+		LOGGER.info("Start");
+		List<Country> countries = countryService.searchCountriesSorted("ou");
+		LOGGER.debug("Countries={}", countries);
+		LOGGER.info("End");
+	}
+
+	private static void testCountriesStartingWith() {
+		LOGGER.info("Start");
+		List<Country> countries = countryService.getCountriesStartingWith("Z");
+		LOGGER.debug("Countries={}", countries);
 		LOGGER.info("End");
 	}
 }

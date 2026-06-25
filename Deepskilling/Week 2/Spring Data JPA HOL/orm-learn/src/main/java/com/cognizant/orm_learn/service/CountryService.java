@@ -43,4 +43,19 @@ public class CountryService {
         country.setName(name);
         countryRepository.save(country);
     }
+
+    @Transactional
+    public List<Country> searchCountries(String text) {
+        return countryRepository.findByNameContaining(text);
+    }
+
+    @Transactional
+    public List<Country> searchCountriesSorted(String text) {
+        return countryRepository.findByNameContainingOrderByNameAsc(text);
+    }
+
+    @Transactional
+    public List<Country> getCountriesStartingWith(String alphabet) {
+        return countryRepository.findByNameStartingWith(alphabet);
+    }
 }
