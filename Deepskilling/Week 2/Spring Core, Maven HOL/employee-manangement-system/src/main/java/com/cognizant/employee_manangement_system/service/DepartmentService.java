@@ -27,13 +27,32 @@ public class DepartmentService {
     }
 
     public Department update(long id,Department updated){
-        Department existing=departmentRepository.findById(id);
+        Department existing=findById(id);
         existing.setName(updated.getName());
-        departmentRepository.save(existing);
+        return departmentRepository.save(existing);
     }
 
     public void delete(Long id){
         departmentRepository.deleteById(id);
     }
 
+    public Department searchByName(String name) {
+        return departmentRepository.searchByName(name);
+    }
+
+    public List<Department> searchByNameKeyword(String keyword) {
+        return departmentRepository.searchByNameKeyword(keyword);
+    }
+
+    public List<Department> findDepartmentsWithEmployees() {
+        return departmentRepository.findDepartmentsWithEmployees();
+    }
+
+    public Department findByNameNamed(String name) {
+        return departmentRepository.findByNameNamed(name);
+    }
+
+    public List<Department> findAllOrderByName() {
+        return departmentRepository.findAllOrderByName();
+    }
 }

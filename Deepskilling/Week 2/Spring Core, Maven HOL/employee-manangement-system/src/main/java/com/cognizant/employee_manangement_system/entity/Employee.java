@@ -12,6 +12,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedQueries({
+        @NamedQuery(
+                name = "Employee.findByNameNamed",
+                query = "SELECT e FROM Employee e WHERE e.name = :name"
+        ),
+        @NamedQuery(
+                name = "Employee.findAllOrderByEmail",
+                query = "SELECT e FROM Employee e ORDER BY e.email ASC"
+        )
+})
 public class Employee {
 
     @Id

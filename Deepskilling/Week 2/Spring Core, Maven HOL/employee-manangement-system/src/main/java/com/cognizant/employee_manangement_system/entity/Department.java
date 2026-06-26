@@ -14,6 +14,16 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedQueries({
+        @NamedQuery(
+                name = "Department.findByNameNamed",
+                query = "SELECT d FROM Department d WHERE d.name = :name"
+        ),
+        @NamedQuery(
+                name = "Department.findAllOrderByName",
+                query = "SELECT d FROM Department d ORDER BY d.name ASC"
+        )
+})
 public class Department {
 
     @Id

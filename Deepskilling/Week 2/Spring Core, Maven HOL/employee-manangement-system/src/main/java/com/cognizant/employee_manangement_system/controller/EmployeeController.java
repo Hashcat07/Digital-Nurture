@@ -3,6 +3,7 @@ package com.cognizant.employee_manangement_system.controller;
 import com.cognizant.employee_manangement_system.entity.Employee;
 import com.cognizant.employee_manangement_system.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,5 +38,15 @@ public class EmployeeController {
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id){
         return "Employee " +id+ " Deleted.";
+    }
+
+    @GetMapping("/search")
+    public List<Employee> search(@RequestParam String name) {
+        return employeeService.findByName(name);
+    }
+
+    @GetMapping("/paged")
+    public Page<Employee> getPaged(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "id") String sortBy, @RequestParam(defaultValue = "asc") String direction){
+        return employeeService.findALlPaged(page, size, sortBy, direction);
     }
 }

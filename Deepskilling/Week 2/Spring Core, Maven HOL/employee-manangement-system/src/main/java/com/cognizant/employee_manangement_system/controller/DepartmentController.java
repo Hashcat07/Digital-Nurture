@@ -1,6 +1,7 @@
 package com.cognizant.employee_manangement_system.controller;
 
 import com.cognizant.employee_manangement_system.entity.Department;
+import com.cognizant.employee_manangement_system.entity.Employee;
 import com.cognizant.employee_manangement_system.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -40,4 +41,28 @@ public class DepartmentController {
         return "Department "+ id+ " Deleted.";
     }
 
+    @GetMapping("/search")
+    public Department searchByName(@RequestParam String name) {
+        return departmentService.searchByName(name);
+    }
+
+    @GetMapping("/search-keyword")
+    public List<Department> searchByKeyword(@RequestParam String keyword) {
+        return departmentService.searchByNameKeyword(keyword);
+    }
+
+    @GetMapping("/with-employees")
+    public List<Department> withEmployees() {
+        return departmentService.findDepartmentsWithEmployees();
+    }
+
+    @GetMapping("/named")
+    public Department findByNameNamed(@RequestParam String name) {
+        return departmentService.findByNameNamed(name);
+    }
+
+    @GetMapping("/sorted-by-name")
+    public List<Department> sortedByName() {
+        return departmentService.findAllOrderByName();
+    }
 }
