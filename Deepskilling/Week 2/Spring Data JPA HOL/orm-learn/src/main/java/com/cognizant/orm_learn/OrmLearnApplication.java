@@ -2,10 +2,7 @@ package com.cognizant.orm_learn;
 
 import com.cognizant.orm_learn.model.*;
 import com.cognizant.orm_learn.repository.StockRepository;
-import com.cognizant.orm_learn.service.CountryService;
-import com.cognizant.orm_learn.service.DepartmentService;
-import com.cognizant.orm_learn.service.EmployeeService;
-import com.cognizant.orm_learn.service.SkillService;
+import com.cognizant.orm_learn.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class OrmLearnApplication {
@@ -30,6 +30,10 @@ public class OrmLearnApplication {
 
 	private static SkillService skillService;
 
+	private static EmployeeCriteriaService employeeCriteriaService;
+
+	private static AttemptService attemptService;
+
 	public static void main(String[] args) throws Exception{
 
 		ApplicationContext context = SpringApplication.run(OrmLearnApplication.class,args);
@@ -39,6 +43,8 @@ public class OrmLearnApplication {
 		employeeService = context.getBean(EmployeeService.class);
 		departmentService = context.getBean(DepartmentService.class);
 		skillService = context.getBean(SkillService.class);
+		employeeCriteriaService = context.getBean(EmployeeCriteriaService.class);
+		attemptService=context.getBean(AttemptService.class);
 
 //		testGetAllCountries();
 //		testAddCountry();
@@ -46,12 +52,14 @@ public class OrmLearnApplication {
 //		testSearchCountries();
 //		testSearchCountriesSorted();
 //		testDeleteCountry();
-		testFacebookStocks();
-		testGoogleStocks();
-		testNetflixStocks();
-		testTopVolumeStock();
-		testGetEmployee();
-		testAddEmployee();
+//		testFacebookStocks();
+//		testGoogleStocks();
+//		testNetflixStocks();
+//		testTopVolumeStock();
+//		testGetEmployee();
+//		testAddEmployee();
+		testGetDepartment();
+		testGetAttempt();
 		LOGGER.info("Inside main");
 	}
 
@@ -188,6 +196,60 @@ public class OrmLearnApplication {
 		employee.getSkillList().add(skill);
 		employeeService.save(employee);
 		LOGGER.debug("Employee with skills updated: {}", employee);
+		LOGGER.info("End");
+	}
+
+	private static void testGetDepartment() {
+		LOGGER.info("Start");
+		Department department = departmentService.get(2);
+		LOGGER.debug("Department:{}", department);
+		LOGGER.debug("Employees:{}", department.getEmployees());
+		LOGGER.info("End");
+	}
+
+	private static void testGetAllPermanentEmployees(){
+		LOGGER.info("Start");
+		List<Employee> employees = employeeService.getAllPermanentEmployees();
+		employees.forEach(e -> LOGGER.debug("Employee: {}", e));
+		LOGGER.info("End");
+	}
+
+	private static void testAverageSalary(){
+		LOGGER.info("Start");
+		double avg = employeeService.getAverageSalary(1);
+		LOGGER.debug("Average Salary: {}", avg);
+		LOGGER.info("End");
+	}
+
+	private static void testNativeEmployees(){
+		LOGGER.info("Start");
+		employeeService.getAllEmployeesNative()
+				.forEach(e -> LOGGER.debug("Employee: {}", e));
+		LOGGER.info("End");
+	}
+
+	private static void testCriteria(){
+		LOGGER.info("Start");
+		employeeCriteriaService.getPermanentEmployees()
+				.forEach(e -> LOGGER.debug("Employee: {}", e));
+		LOGGER.info("End");
+	}
+
+	private static void testGetAttempt() {
+		LOGGER.info("Start");
+		Attempt attempt = attemptService.getAttempt(1, 1);
+		LOGGER.debug("User: {}", attempt.getUser().getName());
+		LOGGER.debug("Attempted Date: {}", attempt.getDate());
+
+		attempt.getAttemptQuestions().stream().sorted(Comparator.comparingInt(AttemptQuestion::getId))
+				.forEach(aq -> {
+					Question q = aq.getQuestion();
+					Set<Integer> picked = aq.getAttemptOptions().stream().map(ao -> ao.getOption().getId()).collect(Collectors.toSet());
+					LOGGER.debug("");
+					LOGGER.debug(q.getText());
+					int[] i = {1};
+					q.getOptions().stream().sorted(Comparator.comparingInt(Options::getId)).forEach(o -> LOGGER.debug(String.format(" %d) %-12s %.1f   %b", i[0]++, o.getText(), o.getScore(), picked.contains(o.getId()))));
+				});
 		LOGGER.info("End");
 	}
 

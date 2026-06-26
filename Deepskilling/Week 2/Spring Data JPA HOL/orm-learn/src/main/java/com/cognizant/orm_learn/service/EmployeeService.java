@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class EmployeeService {
 
@@ -28,5 +30,17 @@ public class EmployeeService {
         LOGGER.info("Start");
         employeeRepository.save(employee);
         LOGGER.info("End");
+    }
+
+    public List<Employee> getAllPermanentEmployees(){
+        return employeeRepository.getAllPermanentEmployees();
+    }
+
+    public double getAverageSalary(int id){
+        return employeeRepository.getAverageSalary(id);
+    }
+
+    public List<Employee> getAllEmployeesNative(){
+        return employeeRepository.getAllEmployeesNative();
     }
 }
