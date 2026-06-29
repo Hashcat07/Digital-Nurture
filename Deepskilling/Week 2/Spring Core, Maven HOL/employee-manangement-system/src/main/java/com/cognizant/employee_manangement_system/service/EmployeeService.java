@@ -1,13 +1,17 @@
 package com.cognizant.employee_manangement_system.service;
 
 import com.cognizant.employee_manangement_system.entity.Employee;
+import com.cognizant.employee_manangement_system.projection.EmployeeDto;
 import com.cognizant.employee_manangement_system.repository.EmployeeRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,6 +20,8 @@ import java.util.List;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public Employee save(Employee employee){
         return employeeRepository.save(employee);
@@ -45,7 +51,7 @@ public class EmployeeService {
         return employeeRepository.searchByName(name);
     }
 
-    public Page<Employee> findALlPaged(int page, int size, String sortBy, String direction){
+    public Page<Employee> findAllPaged(int page, int size, String sortBy, String direction){
 
         Sort.Direction dir = direction.equalsIgnoreCase("desc")
                 ? Sort.Direction.DESC
@@ -55,4 +61,29 @@ public class EmployeeService {
 
         return employeeRepository.findAll(pageable);
     }
+
+    public List<EmployeeDto> getDtosByDepartment(Long deptId) {
+        return employeeRepository.fetchEmployeeDtos(deptId);
+    }
+
+    @Transactional
+    public List<Employee> bulkCreate(List<Employee> employees) {
+        return employeeRepository.saveAll(employees);
+    }
+
+    @Transactional
+    public void batchInsert(List<Employee> employees) {
+        int batchSize = 20;
+        for (int i = 0; i < employees.size(); i++) {
+            entityManager.persist(employees.get(i));
+            if (i > 0 && i % batchSize == 0) {
+                entityManager.flush();
+                entityManager.clear();
+            }
+        }
+        entityManager.flush();
+        entityManager.clear();
+    }
+
+
 }

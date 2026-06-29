@@ -1,6 +1,7 @@
 package com.cognizant.employee_manangement_system.controller;
 
 import com.cognizant.employee_manangement_system.entity.Employee;
+import com.cognizant.employee_manangement_system.projection.EmployeeDto;
 import com.cognizant.employee_manangement_system.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -37,6 +38,7 @@ public class EmployeeController {
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable Long id){
+        employeeService.delete(id);
         return "Employee " +id+ " Deleted.";
     }
 
@@ -47,6 +49,22 @@ public class EmployeeController {
 
     @GetMapping("/paged")
     public Page<Employee> getPaged(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size, @RequestParam(defaultValue = "id") String sortBy, @RequestParam(defaultValue = "asc") String direction){
-        return employeeService.findALlPaged(page, size, sortBy, direction);
+        return employeeService.findAllPaged(page, size, sortBy, direction);
+    }
+
+    @GetMapping("/dto")
+    public List<EmployeeDto> dtos(@RequestParam Long deptId) {
+        return employeeService.getDtosByDepartment(deptId);
+    }
+
+    @PostMapping("/bulk")
+    public List<Employee> bulkCreate(@RequestBody List<Employee> employees) {
+        return employeeService.bulkCreate(employees);
+    }
+
+    @PostMapping("/batch")
+    public String batchInsert(@RequestBody List<Employee> employees) {
+        employeeService.batchInsert(employees);
+        return employees.size() + " employees inserted in batches";
     }
 }

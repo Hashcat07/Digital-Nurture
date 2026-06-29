@@ -3,7 +3,6 @@ package com.cognizant.employee_manangement_system.service;
 import com.cognizant.employee_manangement_system.entity.Department;
 import com.cognizant.employee_manangement_system.repository.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,7 +25,7 @@ public class DepartmentService {
         return departmentRepository.findById(id).orElseThrow(()->new RuntimeException("Department Not Found: "+ id));
     }
 
-    public Department update(long id,Department updated){
+    public Department update(Long id,Department updated){
         Department existing=findById(id);
         existing.setName(updated.getName());
         return departmentRepository.save(existing);
