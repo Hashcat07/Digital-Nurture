@@ -19,6 +19,7 @@ public class SpringLearnApplication {
 
 		SpringApplication.run(SpringLearnApplication.class, args);
 		displayDate();
+		displayCountry();
 	}
 
 	public static void displayDate() throws Exception{
@@ -32,6 +33,17 @@ public class SpringLearnApplication {
 
 		LOGGER.debug("{}",date);
 
+		LOGGER.info("END");
+	}
+
+	public static void displayCountry(){
+		LOGGER.info("Start");
+
+		ApplicationContext context= new ClassPathXmlApplicationContext("country.xml");
+
+		Country country = context.getBean("country",Country.class);
+
+		LOGGER.debug("Country {}", country.toString());
 		LOGGER.info("END");
 	}
 
