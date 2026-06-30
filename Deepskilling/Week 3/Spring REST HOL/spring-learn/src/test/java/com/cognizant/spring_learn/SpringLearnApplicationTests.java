@@ -38,8 +38,15 @@ class SpringLearnApplicationTests {
 		actions.andExpect(jsonPath("$.name").exists());
 		actions.andExpect(jsonPath("$.name").value("India"));
 
+	}
 
+	@Test
+	void testGetCountryException() throws Exception {
 
+		ResultActions actions = mockMvc.perform(get("/countries/az"));
+
+		actions.andExpect(status().isNotFound());
+		actions.andExpect(status().reason("Country Not Found"));
 	}
 
 }
