@@ -7,7 +7,7 @@
        https://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="country"
-          class="com.cognizant.spring_learn.Country">
+          class="com.cognizant.spring_learn.Country" scope="prototype">
 
         <property name="code" value="IN"/>
 
