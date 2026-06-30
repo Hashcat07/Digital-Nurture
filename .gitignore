@@ -10,8 +10,10 @@ bin/
 .metadata/
 
 # IntelliJ IDEA
-.idea/
+.idea
+*.iws
 *.iml
+*.ipr
 
 # VS Code
 .vscode/
