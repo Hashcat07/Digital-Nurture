@@ -7,20 +7,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
 
 import java.util.ArrayList;
 
 @RestController
+@RequestMapping("/countries")
 public class CountryController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CountryController.class);
     private CountryService countryService=new CountryService();
 
-    @RequestMapping("/country")
+    @RequestMapping("/india")
     public Country getCountryIndia() {
 
         LOGGER.info("START");
@@ -31,7 +30,7 @@ public class CountryController {
         return country;
     }
 
-    @GetMapping("/countries")
+    @GetMapping
     public ArrayList<Country> getAllCountries() {
 
         LOGGER.info("START");
@@ -42,12 +41,22 @@ public class CountryController {
         return countries;
     }
 
-    @GetMapping("/countries/{code}")
+    @GetMapping("/{code}")
     public Country getCountry(@PathVariable String code) throws CountryNotFoundException {
 
         LOGGER.info("START");
         Country country = countryService.getCountry(code);
         LOGGER.info("END");
+
+        return country;
+    }
+
+    @PostMapping
+    public Country addCountry(@RequestBody @Valid Country country) {
+
+        LOGGER.info("Start");
+        LOGGER.debug("Country : {}", country);
+        LOGGER.info("End");
 
         return country;
     }
