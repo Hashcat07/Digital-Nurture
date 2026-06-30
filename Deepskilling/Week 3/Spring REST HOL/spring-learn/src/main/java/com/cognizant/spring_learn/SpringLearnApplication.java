@@ -19,9 +19,9 @@ public class SpringLearnApplication {
 	public static void main(String[] args) throws Exception {
 
 		SpringApplication.run(SpringLearnApplication.class, args);
-		displayDate();
-		displayCountry();
-		displayCountries();
+//		displayDate();
+//		displayCountry();
+//		displayCountries();
 	}
 
 	public static void displayDate() throws Exception{
