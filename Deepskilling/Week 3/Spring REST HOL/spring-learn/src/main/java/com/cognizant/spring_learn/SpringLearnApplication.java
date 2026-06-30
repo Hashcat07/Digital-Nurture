@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 @SpringBootApplication
@@ -20,6 +21,7 @@ public class SpringLearnApplication {
 		SpringApplication.run(SpringLearnApplication.class, args);
 		displayDate();
 		displayCountry();
+		displayCountries();
 	}
 
 	public static void displayDate() throws Exception{
@@ -45,6 +47,16 @@ public class SpringLearnApplication {
 		Country anotherCountry=context.getBean("country",Country.class);
 
 		LOGGER.debug("Country {}", country.toString());
+		LOGGER.info("END");
+	}
+
+	public static void displayCountries(){
+
+		LOGGER.info("START");
+		ApplicationContext context = new ClassPathXmlApplicationContext("country.xml");
+		ArrayList<Country> countries = context.getBean("countryList", ArrayList.class);
+
+		LOGGER.debug("Countries : {}", countries);
 		LOGGER.info("END");
 	}
 
