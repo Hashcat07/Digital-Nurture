@@ -1,6 +1,7 @@
 package com.cognizant.spring_learn.service;
 
 import com.cognizant.spring_learn.Country;
+import com.cognizant.spring_learn.exception.CountryNotFoundException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -17,6 +18,6 @@ public class CountryService {
                 return country;
             }
         }
-        return null;
+        throw new CountryNotFoundException();
     }
 }
