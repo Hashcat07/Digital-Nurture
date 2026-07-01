@@ -10,7 +10,7 @@ public class HelloController {
     private static Logger LOGGER= LoggerFactory.getLogger(HelloController.class);
 
     @GetMapping("/hello")
-    public String SayHello(){
+    public String sayHello(){
         LOGGER.info("START");
         LOGGER.info("END");
         return "Hello World!!";

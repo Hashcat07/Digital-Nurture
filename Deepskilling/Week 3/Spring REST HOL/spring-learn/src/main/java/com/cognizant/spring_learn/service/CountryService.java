@@ -4,9 +4,11 @@ import com.cognizant.spring_learn.Country;
 import com.cognizant.spring_learn.exception.CountryNotFoundException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class CountryService {
 
     public Country getCountry(String code) {
